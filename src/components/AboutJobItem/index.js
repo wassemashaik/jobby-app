@@ -5,8 +5,7 @@ import {AiFillStar} from 'react-icons/ai'
 import {BiLinkExternal} from 'react-icons/bi'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
-
-import SimilarJobs from '../SimilarJobs'
+import SimilarJobItem from '../SimilarJobItem'
 import './index.css'
 
 const apiStatusConstants = {
@@ -26,8 +25,8 @@ class AboutJobItem extends Component {
   componentDidMount() {
     this.getJobData()
   }
-  //id
-  getJobData = async props => {
+
+  getJobData = async () => {
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -95,7 +94,6 @@ class AboutJobItem extends Component {
         companyLogoUrl,
         companyWebsiteUrl,
         employmentType,
-        id,
         jobDescription,
         lifeAtCompany,
         location,
@@ -171,7 +169,7 @@ class AboutJobItem extends Component {
           <h1 className="similar-jobs-heading">Similar Jobs</h1>
           <ul className="similar-jobs-ul-container">
             {similarJobsData.map(eachItem => (
-              <SimilarJobs
+              <SimilarJobItem
                 key={eachItem.id}
                 similarJobsData={eachItem}
                 employmentType={employmentType}

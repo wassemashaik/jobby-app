@@ -1,5 +1,6 @@
 .filters-group-container {
   margin-top: 16px;
+  position: sticky;
 }
 @media (min-width: 768px) {
   .filters-group-container {

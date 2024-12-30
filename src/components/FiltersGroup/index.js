@@ -49,9 +49,9 @@ const FiltersGroup = props => {
         <h1 className="employement-type-heading">Type of Employement</h1>
         <ul className="employement-type-list-container">
           {employmentTypesList.map(eachEmployeeType => {
-            const {changeEmployeeList} = props
+            const {changeLocation} = props
             const onSelectEmployeeType = event => {
-              changeEmployeeList(event.target.value)
+              changeLocation(event.target.value)
             }
             return (
               <li
@@ -116,6 +116,43 @@ const FiltersGroup = props => {
     )
   }
 
+  const renderLocation = () => {
+    const {locationList} = props
+    return (
+      <div className="employement-type-container">
+        <h1 className="employement-type-heading">Jobs Route</h1>
+        <ul className="employement-type-list-container">
+          {locationList.map(locationType => {
+            const {changeLocation} = props
+            const onSelectLocation = event => {
+              changeLocation(event.target.value)
+            }
+            return (
+              <li
+                className="employee-item"
+                key={locationType.locationId}
+                onChange={onSelectLocation}
+              >
+                <input
+                  type="checkbox"
+                  id={locationType.locationId}
+                  className="check-input"
+                  value={locationType.locationId}
+                />
+                <label
+                  htmlFor={locationType.locationId}
+                  className="check-label"
+                >
+                  {locationType.label}
+                </label>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    )
+  }
+
   return (
     <div className="filters-group-container">
       {renderSearchInput()}
@@ -124,6 +161,8 @@ const FiltersGroup = props => {
       {renderTypeOfEmployement()}
       <hr className="horizantal-line" />
       {renderSalaryRange()}
+      <hr className="horizantal-line" />
+      {renderLocation()}
     </div>
   )
 }

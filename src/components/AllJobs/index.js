@@ -47,6 +47,14 @@ const salaryRangesList = [
   },
 ]
 
+const locationList = [
+  {locationId: 'HYDERABAD', label: 'Hyderabad'},
+  {locationId: 'BANGLORE', label: 'Banglore'},
+  {locationId: 'CHENNAI', label: 'Chennai'},
+  {locationId: 'DELHI', label: 'Delhi'},
+  {locationId: 'MUMBAI', label: 'Mumbai'},
+]
+
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
@@ -320,6 +328,24 @@ class AllJobs extends Component {
     </ul>
   )
 
+  onGetLocationCheckBoxVIew = () => (
+    <ul className="check-boxes-container">
+      {locationList.map(eachItem => (
+        <li className="li-container" key={eachItem.locationId}>
+          <input
+            className="input"
+            id={eachItem.employmentTypeId}
+            type="checkbox"
+            onChange={this.onGetInputOption}
+          />
+          <label className="label" htmlFor={eachItem.locationId}>
+            {eachItem.label}
+          </label>
+        </li>
+      ))}
+    </ul>
+  )
+
   onGetSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
@@ -350,6 +376,9 @@ class AllJobs extends Component {
             <hr className="hr-line" />
             <h1 className="text">Salary Range</h1>
             {this.onGetRadioButtonVIew()}
+            <hr className="hr-line" />
+            <h1 className="text">Salary Range</h1>
+            {this.onGetLocationCheckBoxVIew()}
           </div>
           <div className="jobs-container">
             <div>
@@ -364,6 +393,7 @@ class AllJobs extends Component {
               <button
                 data-testid="searchButton"
                 type="button"
+                aria-label="search button"
                 className="search-button"
                 onClick={this.onSubmitSearchInput}
               >
